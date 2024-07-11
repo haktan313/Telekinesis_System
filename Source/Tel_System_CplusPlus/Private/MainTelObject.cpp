@@ -17,12 +17,6 @@ AMainTelObject::AMainTelObject()
 	
 }
 
-void AMainTelObject::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
 void AMainTelObject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

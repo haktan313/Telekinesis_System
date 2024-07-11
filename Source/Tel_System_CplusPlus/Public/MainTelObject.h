@@ -15,12 +15,6 @@ public:
 
 	AMainTelObject();
 
-protected:
-
-	virtual void BeginPlay() override;
-
-public:	
-
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void RotateLaunch_Implementation() override;
@@ -30,12 +24,10 @@ public:
 	virtual void ThrowItem_Implementation(AActor* throwTarget, float throwSpeed) override;
 
 	virtual void LaunchItem_Implementation(AActor* Player, bool canLaunch) override;
-
-public:
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Mesh")
 	class UStaticMeshComponent* mainObject;
-
-
+	
 	AActor* LaunchingPlayer;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Launch")
 	AActor* throwTargetFromObject;
