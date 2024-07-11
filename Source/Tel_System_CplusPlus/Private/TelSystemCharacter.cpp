@@ -99,13 +99,11 @@ void ATelSystemCharacter::HoldItem()
 				if (hit.GetActor()->GetClass()->ImplementsInterface(UInterface_TelSystem::StaticClass()))
 				{
 					FoundActor.Add(hit.GetActor());
-					GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Item Held"));
 				}
 			}
 			AActor* nearestTelObject = FindNearestActor(GetActorLocation(), FoundActor);
 			if (nearestTelObject)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Item Held2"));
 				IInterface_TelSystem::Execute_LaunchItem(nearestTelObject, this, true);
 				bIsHoldingItem = true;
 				heldItem = nearestTelObject;
@@ -116,7 +114,6 @@ void ATelSystemCharacter::HoldItem()
 	{
 		if (bIsHoldingItem && heldItem)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Item Released"));
 			IInterface_TelSystem::Execute_ReleaseItem(heldItem);
 			IInterface_TelSystem::Execute_LaunchItem(heldItem, this, false);
 			heldItem = nullptr;
@@ -152,7 +149,6 @@ void ATelSystemCharacter::RotateItem()
 	if (bIsHoldingItem && heldItem)
 	{
 		throwSpeed += 0.1f;
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Rotate Item"));
 		IInterface_TelSystem::Execute_RotateLaunch(heldItem);
 	}
 }
@@ -161,14 +157,10 @@ void ATelSystemCharacter::ThrowItem()
 {
 	if (bIsHoldingItem && heldItem)
 	{
-
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Throw Speed: %f"), throwSpeed));
-
 		IInterface_TelSystem::Execute_ThrowItem(heldItem,throwTarget,throwSpeed);
 		throwSpeed = 0.f;
 		heldItem = nullptr;
 		bIsHoldingItem = false;
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Throw Item"));
 	}
 }
 

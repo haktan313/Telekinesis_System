@@ -64,7 +64,7 @@ void AMainTelObject::ThrowItem_Implementation(AActor* throwTarget, float throwSp
 {
 	if (bCanLaunch)
 	{
-		float lastThrowSpeed = FMath::Clamp(throwSpeed, 0.f, 3.f);
+		float lastThrowSpeed = FMath::Clamp(throwSpeed, 0.f, maxThrowSpeed);
 		mainObject->SetSimulatePhysics(true);
 		mainObject->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 		bCanLaunch = false;
@@ -86,7 +86,7 @@ void AMainTelObject::ThrowItem_Implementation(AActor* throwTarget, float throwSp
 					FVector normalizeVector = throwTargetFromObject->GetActorLocation() - GetActorLocation();
 					double a = 0.0001;
 					normalizeVector.Normalize(a);
-					FVector Impulse3 = normalizeVector * 222222.f * 3;
+					FVector Impulse3 = normalizeVector * 222222.f * maxThrowSpeed;
 					mainObject->AddImpulseAtLocation(Impulse3, GetActorLocation());
 				}
 				else
